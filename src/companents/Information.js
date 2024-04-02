@@ -1,16 +1,21 @@
-
+import { useSpring, animated } from 'react-spring'
 
 import { IoPerson, IoCard } from "react-icons/io5"
 import check from '../assets/desktop/check.svg'
 
 const Information = () => {
+    const customer = useSpring({customers: 10245, from: {customers: 0}})
+    const card = useSpring({cards: 12045, from: {cards: 0}})
+
     return (
         <section className="px-[130px] flex mt-10 max-sm:flex-col max-sm:px-[0px]">
             <div className="flex dark:text-white flex-col items-center py-[60px] w-[300px] gap-7 bg-gradient-to-b from-purple-400 to-transparent shadow-lg rounded-[20px] max-sm:w-[70%] max-sm:mx-auto text-black">
                 <div className="flex items-center gap-7">
                     <IoPerson size='30px'/>
                     <div>
-                        <p className="text-[30px] font-bold">10245</p>
+                        <p className="text-[30px] font-bold">
+                            <animated.div>{customer.customers.to(val => Math.floor(val))}</animated.div>
+                        </p>
                         <p className="text-[22px] font-semibold">Customers</p>
                     </div>
                 </div>
@@ -18,7 +23,9 @@ const Information = () => {
                 <div className="flex items-center gap-7">
                     <IoCard size='30px'/>
                     <div>
-                        <p className="text-[30px] font-bold">12045</p>
+                        <p className="text-[30px] font-bold">
+                            <animated.div>{card.cards.to(val => Math.floor(val))}</animated.div>
+                        </p>
                         <p className="text-[22px] font-semibold">Cards Issued</p>
                     </div>
                 </div>
